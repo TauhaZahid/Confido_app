@@ -1,4 +1,5 @@
 import 'package:confido/components/my_button.dart';
+import 'package:confido/pages/auth_page.dart';
 import 'package:confido/pages/login_page.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,7 @@ class Welcome extends StatelessWidget {
     void goToLogin() {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => LogInPage()),
+        MaterialPageRoute(builder: (context) => AuthPage()),
       );
     }
 

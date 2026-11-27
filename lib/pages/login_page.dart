@@ -1,17 +1,23 @@
 import 'package:confido/components/my_button.dart';
 import 'package:confido/components/my_textfield.dart';
 import 'package:confido/components/square_tile.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LogInPage extends StatelessWidget {
   LogInPage({super.key});
 
   // text editing controllers
-  final usernameController = TextEditingController();
+  final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
   // Sign In Method
-  void signUserIn() {}
+  void signUserIn() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: emailController.text,
+      password: passwordController.text,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,10 +42,10 @@ class LogInPage extends StatelessWidget {
 
               const SizedBox(height: 25),
 
-              //USERNAME TEXTFIELD
+              //EMAIL TEXTFIELD
               MyTextField(
-                controller: usernameController,
-                hintText: 'Username',
+                controller: emailController,
+                hintText: 'Email',
                 obsureText: false,
               ),
 
@@ -70,7 +76,7 @@ class LogInPage extends StatelessWidget {
               const SizedBox(height: 25),
 
               //SIGN IN BUTTON
-              MyButton(onTap: signUserIn,buttonText: "Sign In",),
+              MyButton(onTap: signUserIn, buttonText: "Sign In"),
 
               const SizedBox(height: 50),
 
@@ -116,11 +122,13 @@ class LogInPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Not a member?",
-                  style: TextStyle(
+                  Text(
+                    "Not a member?",
+                    style: TextStyle(
                       color: Colors.grey[700],
                       fontWeight: FontWeight.bold,
-                    ),),
+                    ),
+                  ),
                   SizedBox(width: 2),
                   const Text(
                     "Register",
